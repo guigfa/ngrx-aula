@@ -23,6 +23,6 @@ export class ContadorComponent {
       map(value => value.slice(0, value.length - 1))  
     );
   };
-
-
 }
+
+

@@ -1,6 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
+import { Store } from "@ngrx/store";
 import { BehaviorSubject, Observable, delay, finalize, map, of, take, tap } from "rxjs";
+import { exemploLoading } from "../../../../store/actions/exemplo.actions";
 
 export interface IExemplo {
     userId: number;
@@ -14,19 +16,14 @@ export interface IExemplo {
 })
 export class ExemploService {
     private http = inject(HttpClient);
-    private subject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    public isLoading$: Observable<boolean> = this.subject.asObservable();
+    private store = inject(Store);
 
     public getExemplo(): Observable<IExemplo[]> {
         return this.http.get<IExemplo[]>('https://jsonplaceholder.typicode.com/posts')
             .pipe(
-                tap(() => this.setIsLoading(true)),
-                delay(2000),
-                finalize(() => this.setIsLoading(false)),
+                tap(() => this.store.dispatch(exemploLoading({ isLoading: true }))),
+                delay(5000),
+                finalize(() => this.store.dispatch(exemploLoading({ isLoading: false })))
             );
     };
-
-    public setIsLoading(isLoading: boolean): void {
-        this.subject.next(isLoading);
-    }
 }
