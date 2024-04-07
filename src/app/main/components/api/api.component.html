@@ -1,0 +1,18 @@
+<div class="container">
+    <div>
+        <h1>Chamada API</h1>
+
+        @if(isLoading$ | async) {
+            <div>
+                <span class="sr-only">Carregando...</span>
+            </div>
+        }
+
+        @for(dado of data$ | async; track dado.id){
+                <div style="font-size: 1rem;">
+                    <h2>{{ dado.title }}</h2>
+                    <p>{{ dado.body }}</p>
+                </div>
+        } 
+    </div>
+</div>

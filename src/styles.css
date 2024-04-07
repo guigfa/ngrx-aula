@@ -1,0 +1,13 @@
+.container {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+body {
+    background-image: url('/assets/pog.jpeg');
+    background-size: cover;
+}

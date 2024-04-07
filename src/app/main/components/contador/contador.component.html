@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+        <h1>Lista</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+        <button mat-raised-button (click)="adicionar()">adicionar</button>
+        <button mat-raised-button (click)="remover()">remover</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+        <h2>Minha lista:</h2>
+        @for(item of lista$ | async; track item){
+            <div>
+                <p style="font-size: 12px">{{ item }}</p>
+            </div>
+        }
+        </div>
+    </div>
+</div>
